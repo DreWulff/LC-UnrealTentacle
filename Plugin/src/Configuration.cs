@@ -6,12 +6,18 @@ namespace UnrealTentacle.Configuration {
     public class PluginConfig
     {
         // For more info on custom configs, see https://lethal.wiki/dev/intermediate/custom-configs
-        public ConfigEntry<int> SpawnWeight;
+        public ConfigEntry<string> Rarity;
         public PluginConfig(ConfigFile cfg)
         {
-            SpawnWeight = cfg.Bind("General", "Spawn weight", 20,
-                "The spawn chance weight for UnrealTentacle, relative to other existing enemies.\n" +
-                "Goes up from 0, lower is more rare, 100 and up is very common.");
+            Rarity = cfg.Bind(
+            "Spawning",
+            "Rarity",
+            "All:15,6 Mazon:200,Halation:100,Vow:100,46 Infernis:200",
+            "Spawn weights per moon.\n" +
+            "Format: Key:Weight,Key:Weight\n" +
+            "Keys can be LevelTypes (All, Modded, ExperimentationLevel, etc)\n" +
+            "or custom moon names (Junic, Infernis, etc)."
+        );
             
             ClearUnusedEntries(cfg);
         }

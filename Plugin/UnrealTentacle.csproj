@@ -68,8 +68,8 @@
 
   <!-- References - Game Assemblies -->
   <ItemGroup Condition="$(CI) != 'true'">
-    <Reference Include="$(ManagedDirectory)Assembly-CSharp.dll" Publicize="true" Private="false"/>
-    <Reference Include="$(ManagedDirectory)Unity.Netcode.Runtime.dll"/>
+    <Reference Include="./libs/Assembly-CSharp.dll" Publicize="true" Private="false"/>
+    <Reference Include="./libs/Unity.Netcode.Runtime.dll"/>
   </ItemGroup>
 
   <!-- Package References - Game Assemblies -->
@@ -87,7 +87,7 @@
   </ItemGroup>
   -->
   <Target Name="NetcodePatch" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet netcode-patch &quot;$(TargetPath)&quot; @(ReferencePathWithRefAssemblies->'&quot;%(Identity)&quot;', ' ')" />
+    <Exec Command="dotnet netcode-patch -uv 2022.3.62 -nv 1.12.0 -tv 1.0.0 &quot;$(TargetPath)&quot; @(ReferencePathWithRefAssemblies->'&quot;%(Identity)&quot;', ' ')" />
   </Target>
 
   <!-- Build our Thunderstore package when making a release build. This does not publish our package. -->

@@ -5,7 +5,6 @@ using LethalLib.Modules;
 using BepInEx.Logging;
 using System.IO;
 using UnrealTentacle.Configuration;
-using System.Collections.Generic;
 
 namespace UnrealTentacle {
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
@@ -49,22 +48,19 @@ namespace UnrealTentacle {
             // For different ways of registering your enemy, see https://github.com/EvaisaDev/LethalLib/blob/main/LethalLib/Modules/Enemies.cs
             // Enemies.RegisterEnemy(Tentacle, BoundConfig.SpawnWeight.Value, Levels.LevelTypes.All, TentacleTN, TentacleTK);
             // For using our rarity tables, we can use the following:
-            var TentacleLevelRarities = new Dictionary<Levels.LevelTypes, int> {
-                {Levels.LevelTypes.ExperimentationLevel, 50},
-                {Levels.LevelTypes.AssuranceLevel, 50},
-                {Levels.LevelTypes.VowLevel, 200},
-                {Levels.LevelTypes.OffenseLevel, 30},
-                {Levels.LevelTypes.AdamanceLevel, 150},
-                {Levels.LevelTypes.All, 30},     // Affects unset values, with lowest priority (gets overridden by Levels.LevelTypes.Modded)
-                {Levels.LevelTypes.Modded, 50},     // Affects values for modded moons that weren't specified
-            };
-            var TentacleCustomLevelRarities = new Dictionary<string, int> {
-                {"46 Infernis", 300},    // Either LLL or LE(C) name can be used, LethalLib will handle both
-                {"84 Junic", 300},
-                {"6 Mazon", 200},
-                {"Halation", 100},
-            };
-            Enemies.RegisterEnemy(UnrealTentacle, TentacleLevelRarities, TentacleCustomLevelRarities, UnrealTentacleTN, UnrealTentacleTK);
+            RarityParser.Parse(
+                BoundConfig.Rarity.Value,
+                out var tentacleLevelRarities,
+                out var tentacleCustomLevelRarities
+            );
+
+            Enemies.RegisterEnemy(
+                UnrealTentacle,
+                tentacleLevelRarities,
+                tentacleCustomLevelRarities,
+                UnrealTentacleTN,
+                UnrealTentacleTK
+            );
 
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
         }

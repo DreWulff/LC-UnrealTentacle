@@ -149,20 +149,6 @@ namespace UnrealTentacle {
             SetDeathPositionClientRpc();
         }
 
-        /// <summary>
-        /// Damage the player on collision.
-        /// </summary>
-        /// <param name="other"></param>
-        public override void OnCollideWithPlayer(Collider other)
-        {
-            PlayerControllerB playerControllerB = MeetsStandardPlayerCollisionConditions(other);
-            if (playerControllerB != null && timeSinceDamagingPlayer >= damageCooldown)
-            {
-                playerControllerB.DamagePlayer(stingDamage);
-                timeSinceDamagingPlayer = 0f;
-            }
-        }
-
         [ServerRpc]
         public void DoAnimationServerRpc(string animationName)
         { DoAnimationClientRpc(animationName); }
