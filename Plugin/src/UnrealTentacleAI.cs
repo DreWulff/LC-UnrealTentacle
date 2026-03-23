@@ -8,28 +8,19 @@ namespace UnrealTentacle {
     [RequireComponent(typeof(Rigidbody))]
     partial class UnrealTentacleAI : EnemyAI
     {
-#pragma warning disable 0649, CS8618
-        [Tooltip("Cooldown for damage instances.")]
-        [SerializeField] private float damageCooldown;
-        [Tooltip("Damage done to the player when hit while close.")]
-        [SerializeField] private int stingDamage;
-        [Tooltip("Damage done to the player when hit by the projectile.")]
-        [SerializeField] private int barbDamage;
-        [SerializeField] private GameObject mapDotObj;
-        [SerializeField] private GameObject colliderObj;
-        [SerializeField] private GameObject modelObj;
-        [SerializeField] private GameObject scanNodeObj;
+        [SerializeField] private GameObject mapDotObj = null!;
+        [SerializeField] private GameObject colliderObj = null!;
+        [SerializeField] private GameObject modelObj = null!;
+        [SerializeField] private GameObject scanNodeObj = null!;
         [SerializeField] private int copiesToBeSpawned = 3;
 
-        private float timeSinceDamagingPlayer;
         private float timeOfDeath;
         private Vector3 deadStartingPosition;
         private Vector3 deadTargetPosition;
-        private bool onCeiling = false;
 
         [HideInInspector]
-        public Rigidbody rb;
-#pragma warning restore 0649, CS8618
+        public Rigidbody rb = null!;
+
         enum State {
             ROAMING,
             ASLEEP,
@@ -48,7 +39,6 @@ namespace UnrealTentacle {
             float randomSize = Random.Range(0.8f, 1f);
             gameObject.transform.transform.localScale = randomSize * gameObject.transform.transform.localScale;
             rb = gameObject.GetComponent<Rigidbody>();
-            timeSinceDamagingPlayer = damageCooldown;
             LogIfDebugBuild("Unreal Tentacle Spawned");
             StartRoam();
         }

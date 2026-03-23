@@ -1,3 +1,6 @@
+# v1.0.4
+- Fixed client-server sync problems
+
 # v1.0.3
 - Updated for compatibility with v73
 - Added functional spawn rate config

@@ -2,10 +2,11 @@
 
 namespace UnrealTentacle
 {
+    [RequireComponent (typeof(UnrealTentacleAI))]
     class TentacleAnimationEvents : MonoBehaviour
     {
         [SerializeField]
-        private UnrealTentacleAI mainAI;
+        private UnrealTentacleAI mainAI = null!;
 
         public void EndSpawn()
         { mainAI.Sleep(); }

@@ -6,7 +6,7 @@ namespace UnrealTentacle
     partial class UnrealTentacleAI : EnemyAI
     {
         [SerializeField] private float searchRoofTimer;
-        [SerializeField] private SpotVerifier spotVerifier;
+        [SerializeField] private SpotVerifier spotVerifier = null!;
         private Vector3 projectedPosition;
         private float searchRandomFactor;
 

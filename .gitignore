@@ -58,3 +58,4 @@ Thunderstore/
 !/Thunderstore/Packages/*.txt
 
 *.meta
+*.zip

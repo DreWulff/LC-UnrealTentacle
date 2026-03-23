@@ -5,13 +5,10 @@ namespace UnrealTentacle
 {
     partial class UnrealTentacleAI : EnemyAI
     {
-#pragma warning disable CS8618
-        [SerializeField] private Transform baseTentacleBone;
-        [SerializeField] private Transform tentacleBone;
-        [SerializeField] private Transform tentacleTip;
-        [SerializeField] private GameObject barbProjectile;
-        [SerializeField] private float barbSpeed;
-#pragma warning restore CS8618
+        [SerializeField] private Transform tentacleBone = null!;
+        [SerializeField] private Transform tentacleTip = null!;
+        [SerializeField] private GameObject barbProjectile = null!;
+        [SerializeField] private float barbSpeed = 0f;
 
         public void StartAttack()
         {

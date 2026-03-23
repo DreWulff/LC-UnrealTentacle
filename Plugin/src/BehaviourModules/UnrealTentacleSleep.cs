@@ -5,7 +5,6 @@ namespace UnrealTentacle
 {
     partial class UnrealTentacleAI : EnemyAI
     {
-        [SerializeField] private float range;
         private bool spottedPlayer = false;
         private bool spawned = false;
         private float lookAroundTimer;

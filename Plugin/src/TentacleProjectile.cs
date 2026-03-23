@@ -1,14 +1,14 @@
-﻿using System.Globalization;
-using GameNetcodeStuff;
+﻿using GameNetcodeStuff;
 using Unity.Netcode;
 using UnityEngine;
 
 namespace UnrealTentacle
 {
+    [RequireComponent(typeof(Rigidbody))]
     class TentacleProjectile : NetworkBehaviour
     {
         [SerializeField] private int damage = 20;
-        private Rigidbody rb;
+        private Rigidbody rb = null!;
         private float TTL;
 
         void Awake()

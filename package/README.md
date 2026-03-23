@@ -6,7 +6,7 @@
 
 Mod that adds an enemy based on Unreal's tentacles. It contains custom animations and AI.
 
-![TentaclesInTheMines](https://imgur.com/a/x6oDja8)
+![TentaclesInTheMines](https://i.imgur.com/x6fK1gx.png)
 
 ## Behaviour
 
@@ -14,7 +14,7 @@ Mod that adds an enemy based on Unreal's tentacles. It contains custom animation
 * Once spawned it sticks to a ceiling or floor and shoots any players that get too close.
 * Can be stunned when dealt damage.
 
-![TentacleInTheRoof](https://imgur.com/s1YM2CG)
+![TentacleInTheRoof](https://i.imgur.com/s1YM2CG.png)
 
 ## Credits
 
@@ -26,10 +26,6 @@ Mod that adds an enemy based on Unreal's tentacles. It contains custom animation
 * Thanks to [@XuXiaolan](https://thunderstore.io/c/lethal-company/p/XuXiaolan/) for his [tutorial on making a custom enemy](https://www.youtube.com/watch?v=NZ_F8wDczzM).
 * Thanks to [@Evaisa](https://thunderstore.io/c/lethal-company/p/Evaisa/) for LethalLib of course.
 * Inspired by [@DemonMae](https://thunderstore.io/c/lethal-company/p/DemonMae/)'s mods based on Unreal and UT99.
-
-## ToDo
-
-* Config file.
 
 ## Future projects
 

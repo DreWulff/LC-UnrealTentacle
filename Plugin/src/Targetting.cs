@@ -7,6 +7,7 @@ namespace UnrealTentacle
 {
     partial class UnrealTentacleAI : EnemyAI
     {
+        [SerializeField] private float range = 0f;
         private List<PlayerControllerB> closePlayers = new List<PlayerControllerB>();
         private List<PlayerControllerB> onSightPlayers = new List<PlayerControllerB>();
         private Vector3 targetPlayerPosition;

@@ -6,7 +6,7 @@
 
 Mod that adds an enemy based on Unreal's tentacles. It contains custom animations and AI.
 
-![TentaclesInTheMines](https://imgur.com/JL0vwnV.png)
+![TentaclesInTheMines](https://i.imgur.com/x6fK1gx.png)
 
 ## Behaviour
 
@@ -14,7 +14,7 @@ Mod that adds an enemy based on Unreal's tentacles. It contains custom animation
 * Once spawned it sticks to a ceiling or floor and shoots any players that get too close.
 * Can be stunned when dealt damage.
 
-![TentacleInTheRoof](https://imgur.com/TOev0zk.png)
+![TentacleInTheRoof](https://i.imgur.com/s1YM2CG.png)
 
 ## Credits
 
@@ -27,18 +27,12 @@ Mod that adds an enemy based on Unreal's tentacles. It contains custom animation
 * Thanks to [@Evaisa](https://thunderstore.io/c/lethal-company/p/Evaisa/) for LethalLib of course.
 * Inspired by [@DemonMae](https://thunderstore.io/c/lethal-company/p/DemonMae/)'s mods based on Unreal and UT99.
 
-## ToDo
+# Console Commands
+```py
+# Install netcode patcher
+dotnet tool install -g Evaisa.NetcodePatcher.Cli
+dotnet tool restore
 
-* Config file.
-
-## Future projects
-
-* More Unreal:
-    * Passive creatures like [Nali cows](https://unreal.fandom.com/wiki/Nali_Cow) and [rabbits](https://unreal.fandom.com/wiki/Nali_Rabbit)
-    * Hostile creatures like [Skaarj](https://unreal.fandom.com/wiki/Skaarj_Warrior), [Slith](https://unreal.fandom.com/wiki/Slith) and [Brutes](https://unreal.fandom.com/wiki/Brute)
-    * Moon (Maybe more than one. Who knows)
-    * Scrap
-* Original creatures, both hostile and passive.
-* Maybe more stuff inspired/based on some of my favourite games, like:
-    * Dungeon Siege
-    * Grim Dawn
+# Build project
+dotnet build
+```
