@@ -2,34 +2,34 @@
 using UnityEngine;
 using BepInEx;
 using LethalLib.Modules;
+using LevelTypes = LethalLib.Modules.Levels.LevelTypes;
 using BepInEx.Logging;
 using System.IO;
 using UnrealTentacle.Configuration;
+using System.Collections.Generic;
 
-namespace UnrealTentacle {
+namespace UnrealTentacle
+{
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
-    [BepInDependency(LethalLib.Plugin.ModGUID)] 
-    public class Plugin : BaseUnityPlugin {
+    [BepInDependency(LethalLib.Plugin.ModGUID)]
+    public class Plugin : BaseUnityPlugin
+    {
         internal static new ManualLogSource Logger = null!;
         internal static PluginConfig BoundConfig { get; private set; } = null!;
         public static AssetBundle? ModAssets;
 
-        private void Awake() {
+        private void Awake()
+        {
             Logger = base.Logger;
-
-            // If you don't want your mod to use a configuration file, you can remove this line, Configuration.cs, and other references.
-            BoundConfig = new PluginConfig(base.Config);
-
+            
             // This should be ran before Network Prefabs are registered.
             InitializeNetworkBehaviours();
 
             // We load the asset bundle that should be next to our DLL file, with the specified name.
-            // You may want to rename your asset bundle from the AssetBundle Browser in order to avoid an issue with
-            // asset bundle identifiers being the same between multiple bundles, allowing the loading of only one bundle from one mod.
-            // In that case also remember to change the asset bundle copying code in the csproj.user file.
             var bundleName = "unreal-tentacle-assets";
             ModAssets = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Info.Location), bundleName));
-            if (ModAssets == null) {
+            if (ModAssets == null)
+            {
                 Logger.LogError($"Failed to load custom assets.");
                 return;
             }
@@ -45,14 +45,20 @@ namespace UnrealTentacle {
             NetworkPrefabs.RegisterNetworkPrefab(UnrealTentacle.enemyPrefab);
             NetworkPrefabs.RegisterNetworkPrefab(TentacleBarb);
 
-            // For different ways of registering your enemy, see https://github.com/EvaisaDev/LethalLib/blob/main/LethalLib/Modules/Enemies.cs
-            // Enemies.RegisterEnemy(Tentacle, BoundConfig.SpawnWeight.Value, Levels.LevelTypes.All, TentacleTN, TentacleTK);
-            // For using our rarity tables, we can use the following:
-            RarityParser.Parse(
-                BoundConfig.Rarity.Value,
-                out var tentacleLevelRarities,
-                out var tentacleCustomLevelRarities
-            );
+            // Parses and registers the spawn configuration
+            BoundConfig = new PluginConfig(base.Config);
+            Dictionary<LevelTypes, int> tentacleLevelRarities;
+            Dictionary<string, int> tentacleCustomLevelRarities;
+            RarityParser.Parse(BoundConfig.Rarity.Value, out tentacleLevelRarities, out tentacleCustomLevelRarities);
+
+            foreach(KeyValuePair<LevelTypes, int> kvp in tentacleLevelRarities)
+            {
+                Logger.LogInfo($"Key: {kvp.Key}, Value: {kvp.Value}");
+            }
+            foreach(KeyValuePair<string, int> kvp in tentacleCustomLevelRarities)
+            {
+                Logger.LogInfo($"Key: {kvp.Key}, Value: {kvp.Value}");
+            }
 
             Enemies.RegisterEnemy(
                 UnrealTentacle,
@@ -65,7 +71,8 @@ namespace UnrealTentacle {
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
         }
 
-        private static void InitializeNetworkBehaviours() {
+        private static void InitializeNetworkBehaviours()
+        {
             // See https://github.com/EvaisaDev/UnityNetcodePatcher?tab=readme-ov-file#preparing-mods-for-patching
             var types = Assembly.GetExecutingAssembly().GetTypes();
             foreach (var type in types)
@@ -80,6 +87,6 @@ namespace UnrealTentacle {
                     }
                 }
             }
-        } 
+        }
     }
 }

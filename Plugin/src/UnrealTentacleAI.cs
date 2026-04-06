@@ -121,9 +121,6 @@ namespace UnrealTentacle {
                     // Our death sound will be played through creatureVoice when KillEnemy() is called.
                     // KillEnemy() will also attempt to call creatureAnimator.SetTrigger("KillEnemy"),
                     // so we don't need to call a death animation ourselves.
-
-                    // We need to stop our search coroutine, because the game does not do that by default.
-                    StopCoroutine(searchCoroutine);
                     KillEnemyOnOwnerClient();
                 }
                 else if (enemyHP > 0)

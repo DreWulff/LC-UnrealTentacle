@@ -1,3 +1,7 @@
+# v1.0.5
+- Updated for v80
+- Improved spawn configuration handling
+
 # v1.0.4
 - Fixed client-server sync problems
 
