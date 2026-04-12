@@ -5,8 +5,8 @@ using LethalLib.Modules;
 using LevelTypes = LethalLib.Modules.Levels.LevelTypes;
 using BepInEx.Logging;
 using System.IO;
-using UnrealTentacle.Configuration;
 using System.Collections.Generic;
+using UnrealTentacle.Configuration;
 
 namespace UnrealTentacle
 {
@@ -21,7 +21,7 @@ namespace UnrealTentacle
         private void Awake()
         {
             Logger = base.Logger;
-            
+
             // This should be ran before Network Prefabs are registered.
             InitializeNetworkBehaviours();
 
@@ -47,23 +47,10 @@ namespace UnrealTentacle
 
             // Parses and registers the spawn configuration
             BoundConfig = new PluginConfig(base.Config);
-            Dictionary<LevelTypes, int> tentacleLevelRarities;
-            Dictionary<string, int> tentacleCustomLevelRarities;
-            RarityParser.Parse(BoundConfig.Rarity.Value, out tentacleLevelRarities, out tentacleCustomLevelRarities);
-
-            foreach(KeyValuePair<LevelTypes, int> kvp in tentacleLevelRarities)
-            {
-                Logger.LogInfo($"Key: {kvp.Key}, Value: {kvp.Value}");
-            }
-            foreach(KeyValuePair<string, int> kvp in tentacleCustomLevelRarities)
-            {
-                Logger.LogInfo($"Key: {kvp.Key}, Value: {kvp.Value}");
-            }
-
             Enemies.RegisterEnemy(
                 UnrealTentacle,
-                tentacleLevelRarities,
-                tentacleCustomLevelRarities,
+                BoundConfig.vanillaRarities,
+                BoundConfig.customRarities,
                 UnrealTentacleTN,
                 UnrealTentacleTK
             );

@@ -2,10 +2,11 @@
   "namespace": "DreWulff",
   "name": "UnrealTentacle",
   "description": "Mod that adds the Tentacle from 1998's Unreal.",
-  "version_number": "1.0.5",
+  "version_number": "1.0.6",
   "dependencies": [
     "BepInEx-BepInExPack-5.4.2304",
-    "Evaisa-LethalLib-1.2.0"
+    "Evaisa-LethalLib-1.2.0",
+    "DreWulff-ConfigHelper-1.0.0"
   ],
   "website_url": "https://github.com/DreWulff/LC-UnrealTentacle",
   "FullName": "DreWulff-UnrealTentacle"

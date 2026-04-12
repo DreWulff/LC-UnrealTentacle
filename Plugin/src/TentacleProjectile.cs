@@ -7,7 +7,6 @@ namespace UnrealTentacle
     [RequireComponent(typeof(Rigidbody))]
     class TentacleProjectile : NetworkBehaviour
     {
-        [SerializeField] private int damage = 20;
         private Rigidbody rb = null!;
         private float TTL;
 
@@ -36,7 +35,7 @@ namespace UnrealTentacle
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                other.GetComponent<PlayerControllerB>().DamagePlayer(damage);
+                other.GetComponent<PlayerControllerB>().DamagePlayer(Plugin.BoundConfig.barbDamage.Value);
                 Destroy(gameObject);
             }
             else if ((1051400 & (1 << other.gameObject.layer)) != 0)
